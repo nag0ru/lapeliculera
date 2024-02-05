@@ -24,9 +24,9 @@ class Peliculas(models.Model):
     x_sequence=fields.Integer(string='Ordenación')
 
     # Campos de mensajeria
-    message_follower_ids = fields.One2many('mail.followers', 'res_id', string='Seguidores', domain=lambda self: [('res_model', '=', 'tu_modulo.producto')], readonly=True)
-    activity_ids = fields.One2many('mail.activity', 'res_id', string='Actividades', domain=lambda self: [('res_model', '=', 'tu_modulo.producto')], readonly=True)
-    message_ids  = fields.One2many('mail.activity', 'res_id', string='Mensajes', domain=lambda self: [('model', '=', 'tu_modulo.producto')], readonly=True)
+    message_follower_ids = fields.One2many('mail.followers', 'res_id', string='Seguidores')
+    activity_ids = fields.One2many('mail.activity', 'res_id', string='Actividades')
+    message_ids  = fields.One2many('mail.message', 'res_id', string='Mensajes')
 
  
 class Genero(models.Model):
@@ -48,9 +48,9 @@ class Genero(models.Model):
     x_sequence=fields.Integer(string='Ordenación')
 
     # Campos de mensajeria
-    message_follower_ids = fields.One2many('mail.followers', 'res_id', string='Seguidores', domain=lambda self: [('res_model', '=', 'tu_modulo.producto')], readonly=True)
-    activity_ids = fields.One2many('mail.activity', 'res_id', string='Actividades', domain=lambda self: [('res_model', '=', 'tu_modulo.producto')], readonly=True)
-    message_ids  = fields.One2many('mail.activity', 'res_id', string='Mensajes', domain=lambda self: [('model', '=', 'tu_modulo.producto')], readonly=True)
+    message_follower_ids = fields.One2many('mail.followers', 'res_id', string='Seguidores', readonly=True)
+    activity_ids = fields.One2many('mail.activity', 'res_id', string='Actividades', readonly=True)
+    message_ids  = fields.One2many('mail.activity', 'res_id', string='Mensajes', readonly=True)
 
     def name_get(self):
         result = []
