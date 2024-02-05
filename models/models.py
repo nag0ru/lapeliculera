@@ -19,6 +19,8 @@ class Peliculas(models.Model):
     duracion = fields.Integer(string='Duración', help='Tiene que se en minutos')
     sinopsis = fields.Text(string='Sinopsis')
     genero_id=fields.Many2one("lapeliculera.genero", required=True)
+    fechaPrestamo = fields.Date(string='Fecha de Préstamo')
+    fechaDevolucion = fields.Date(string='Fecha de Devolución')
     x_sequence=fields.Integer(string='Ordenación')
 
     # Campos de mensajeria
