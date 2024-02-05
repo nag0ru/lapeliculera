@@ -1,0 +1,151 @@
+<odoo>
+  <data>
+
+<!-- VIEW LIST PELICULAS-->
+    <record model="ir.ui.view" id="lapeliculera.peliculas_list">
+      <field name="name">lapeliculera peliculas lista</field>
+      <field name="model">lapeliculera.peliculas</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="x_sequence" widget="handle" readonly="1"/>
+          <field name="name"/>
+          <field name="director"/>
+          <field name="industria"/>
+          <field name="genero_id" />
+          <field name="color"/>
+          <field name="duracion"/>
+          <field name="sinopsis"/>        
+        </tree>
+      </field>
+    </record>
+
+<!-- VIEW LIST GENERO-->
+    <record model="ir.ui.view" id="lapeliculera.genero_list">
+      <field name="name">lapeliculera genero lista</field>
+      <field name="model">lapeliculera.genero</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="x_sequence" widget="handle" readonly="1"/>
+          <field name="name"/>
+          <field name="peliculas_ids"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+<!-- VIEW FORMULARIO PELICULAS-->
+    <record model="ir.ui.view" id="lapeliculera.peliculas_form">
+      <field name="name">lapeliculera peliculas formulario</field>
+      <field name="model">lapeliculera.peliculas</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+
+            <h1>Título: <field name="name"/></h1>
+                        
+            <notebook>
+            <page string="Datos principales">
+              <group>
+                <field name="director"/>
+                <field name="industria"/>
+                <field name="genero_id"/>
+              </group>
+            </page>
+            
+            <page string="Datos principales">
+              <group>  
+                <field name="color"/>
+                <field name="duracion"/>
+                <field name="sinopsis"/>
+              </group>
+            </page>
+            </notebook>
+
+          <div class = "oe_chatter">
+            <field name = "message_follower_ids" widget="mail_followers"/>
+            <field name = "activity_ids" widget="mail_thread"/>
+            <field name = "message_ids" widget="mail_thread"/>
+          </div>
+
+          </sheet> 
+
+        </form>
+      </field>
+    </record>
+
+
+<!-- VIEW FORMULARIO GENERO-->
+    <record model="ir.ui.view" id="lapeliculera.genero_form">
+      <field name="name">lapeliculera genero form</field>
+      <field name="model">lapeliculera.genero</field>    
+      <field name="arch" type="xml">
+        <form>
+          <sheet> 
+            <h1>Género: <field name="name"/></h1>  
+            <group>
+              <field name="peliculas_ids"/>
+            </group>    
+
+            <div class = "oe_chatter">
+              <field name = "message_follower_ids" widget="mail_followers"/>
+              <field name = "activity_ids" widget="mail_thread"/>
+              <field name = "message_ids" widget="mail_thread"/>
+            </div>
+          </sheet> 
+          
+        </form>
+      </field>
+    </record>
+
+
+<!-- VIEW BUSQUEDA PELICULAS-->
+    <record model="ir.ui.view" id="lapeliculera.peliculas_search">
+      <field name="name">lapeliculera peliculas busqueda</field>
+      <field name="model">lapeliculera.peliculas</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="director"/>
+          <field name="duracion"/>
+          <filter name="peliculas cortas" domain="[('duracion','&lt;=', 90)]"/>
+
+        </search>
+      </field>
+    </record>
+
+
+
+
+<!-- ACCIONES DE VENTANA -->
+
+    <record model="ir.actions.act_window" id="lapeliculera.peliculas_action_window">
+      <field name="name">Película</field>
+      <field name="res_model">lapeliculera.peliculas</field>
+      <field name="view_mode">tree,form,search</field>
+    </record>
+
+   <record model="ir.actions.act_window" id="lapeliculera.genero_action_window">
+      <field name="name">Género</field>
+      <field name="res_model">lapeliculera.genero</field>
+      <field name="view_mode">tree,form,search</field>
+    </record>
+
+<!-- OPCIONES DE MENU -->
+
+    <menuitem name="lapeliculera" id="lapeliculera.menu_root"/>
+
+<!-- CATEGORIAS DE MENU -->
+
+    <menuitem name="Película" id="lapeliculera.peliculas_menu" parent="lapeliculera.menu_root" action="lapeliculera.peliculas_action_window"/>
+    <menuitem name="Género" id="lapeliculera.genero_menu" parent="lapeliculera.menu_root" action="lapeliculera.genero_action_window"/>
+
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="lapeliculera.menu_1_list" parent="lapeliculera.menu_1"
+              action="lapeliculera.action_window"/>
+    <menuitem name="Server to list" id="lapeliculera" parent="lapeliculera.menu_2"
+              action="lapeliculera.action_server"/>
+-->
+  </data>
+</odoo>
